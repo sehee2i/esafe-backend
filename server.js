@@ -5,12 +5,12 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Health Check
+// ✅ Health Check
 app.get("/health", (req, res) => {
   res.send("✅ Backend is running with SQLite");
 });
 
-// SQLite 연결
+// ✅ SQLite 연결
 const db = new sqlite3.Database(":memory:");
 db.serialize(() => {
   db.run("CREATE TABLE messages (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)");
@@ -27,13 +27,8 @@ app.get("/messages", (req, res) => {
   });
 });
 
-// ✅ 정적 파일 제공 (public 폴더)
-app.use(express.static(path.join(__dirname, "public")));
-
-// ✅ 기본 라우트: index.html 반환
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+// ✅ 정적 파일 루트를 public/esafe 로 설정
+app.use(express.static(path.join(__dirname, "public/esafe")));
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);

@@ -12,15 +12,11 @@ db.serialize(() => {
   db.run("INSERT INTO messages (text) VALUES ('Hello from SQLite + Render!')");
 });
 
-// 👉 정적 파일 서빙
-app.use(express.static(path.join(__dirname, "public/esafe")));
-
-// 👉 기본 라우트 (http://.../ 로 접속했을 때 index.html 열어줌)
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/esafe/index.html"));
+// ✅ API 라우트 먼저!
+app.get("/health", (req, res) => {
+  res.send("✅ Backend is running with SQLite");
 });
 
-// 👉 API 라우트
 app.get("/messages", (req, res) => {
   db.all("SELECT * FROM messages", [], (err, rows) => {
     if (err) {
@@ -29,6 +25,14 @@ app.get("/messages", (req, res) => {
     }
     res.json(rows);
   });
+});
+
+// ✅ 그다음에 정적 파일 서빙
+app.use(express.static(path.join(__dirname, "public/esafe")));
+
+// 기본 루트 (index.html)
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/esafe/index.html"));
 });
 
 app.listen(PORT, () => {

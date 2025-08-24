@@ -3,14 +3,14 @@ const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;  // ✅ Render가 지정한 PORT 사용
 
-// ✅ Health Check
+// Health Check
 app.get("/health", (req, res) => {
   res.send("✅ Backend is running with SQLite");
 });
 
-// ✅ SQLite 연결
+// SQLite 연결
 const db = new sqlite3.Database(":memory:");
 db.serialize(() => {
   db.run("CREATE TABLE messages (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)");
@@ -27,9 +27,10 @@ app.get("/messages", (req, res) => {
   });
 });
 
-// ✅ 정적 파일 루트를 public/esafe 로 설정
+// 정적 파일 (frontend)
 app.use(express.static(path.join(__dirname, "public/esafe")));
 
-app.listen(PORT, () => {
+// ✅ Render에서 주는 포트로 실행
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`✅ Server running on port ${PORT}`);
 });

@@ -1,0 +1,12 @@
+시선이 포함되어 있는 데이터셋 목록 정리
+1. MAHNOB-HCI
+2. CEAP-360VR 
+3. VREED 
+4. SEED-IV
+5. eSEE-d
+6. Uniss-FGD
+7. EmoEye
+8. AFFEC
+
+-> seed 데이터셋 종류 알아오기
+

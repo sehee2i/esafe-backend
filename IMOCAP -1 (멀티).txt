@@ -1,0 +1,16 @@
+IMOCAP -1 (멀티)
+CMU-MOSEI -2 (멀티)
+(추가) -3 AffectNet (비주얼기반)
+(추가) -4 RAF-DB (비주얼)
+//(추가) FERplus (2013의 확장판) -5 (비주얼)
+RECOLA -6 (멀티)
+//(추가) Aff-WIld2 -7 (비주얼)
+//CK+ -8 (비주얼)
+DEAP -9 (멀티)
+AMIGOS -10
+MEAD -11
+//FER-2013plus -12
+
+
+
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10625569

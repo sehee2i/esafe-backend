@@ -1,0 +1,25 @@
+import pymysql
+
+def fetch_recent_gps_data():
+    conn = pymysql.connect(host='gps.czk4swqkaeoz.ap-northeast-2.rds.amazonaws.com', user='capstone1', password='hyunju4310!', database='gps')
+    cursor = conn.cursor()
+    cursor.execute("SELECT latitude, longitude FROM gps.gps_data ORDER BY date DESC LIMIT 1")
+    recent_gps_data = cursor.fetchone()
+    conn.close()
+    return recent_gps_data
+    print(f"최근 GPS: {recent_gps}")
+
+def fetch_shelters_within_radius(lat, lon, radius_meters=50):
+    conn = pymysql.connect(host='gps.czk4swqkaeoz.ap-northeast-2.rds.amazonaws.com', user='capstone1', password='hyunju4310!', database='shelter')
+    cursor = conn.cursor()
+    query = """
+        SELECT lat, long
+        FROM shelter.shelter_data
+        WHERE ST_Distance_Sphere(Point(latitude, longitude), Point(%s, %s)) <= %s
+        ORDER BY ST_Distance_Sphere(Point(latitude, longitude), Point(%s, %s))
+        LIMIT 1
+    """
+    cursor.execute(query, (lat, lon, radius_meters, lat, lon))
+    shelter = cursor.fetchone()
+    conn.close()
+    return shelter

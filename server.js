@@ -14,7 +14,7 @@ db.serialize(() => {
   db.run("INSERT INTO messages (text) VALUES ('Hello from SQLite + Render!')");
 });
 
-// ✅ 헬스 체크 라우트
+// ✅ 헬스 체크
 app.get("/health", (req, res) => {
   res.send("✅ Backend is running with SQLite");
 });
@@ -30,15 +30,19 @@ app.get("/messages", (req, res) => {
   });
 });
 
-// ✅ 정적 파일 (프론트)
-app.use(express.static(path.join(__dirname, "public")));
+// ✅ 정적 파일 (프론트 제공)
+app.use(express.static(path.join(__dirname, "public", "esafe")));
 
-// ✅ 없는 라우트는 프론트 index.html로 리다이렉트 (SPA 대응 시 필요)
+// ✅ 기본 라우트 (index.html 서빙)
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "esafe", "index.html"));
+});
+
+// ✅ SPA 대응 (React/Vue 같은 경우에만 필요, 지금은 옵션)
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "esafe", "index.html"));
 });
 
-// 서버 시작
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

@@ -1,7 +1,8 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
-const app = express();
+const path = require("path");
 
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Health Check
@@ -27,8 +28,13 @@ app.get("/messages", (req, res) => {
   });
 });
 
-// 정적 파일
-app.use(express.static("public"));
+// 정적 파일 서빙
+app.use(express.static(path.join(__dirname, "public")));
+
+// 기본 라우트 → index.html 제공
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);

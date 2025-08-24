@@ -1,0 +1,220 @@
+/* ================= 공통 ================= */
+:root {
+  --primary: #003155;
+  --ink: #000;
+  --muted: #D9D9D9;
+  --chip: #000;
+  --chip-text: #fff;
+  --container: 1440px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  transition: opacity 0.5s ease;
+  background-color: #f0f4f8;
+}
+body.fade-out { opacity: 0; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ================= 헤더 ================= */
+.header-bar {
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 16px 0;
+}
+
+.header-bar .header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Poppins', sans-serif;  /* Poppins 로고용 폰트로 교체 */
+  font-size: 64px;                     /* 필요에 따라 조절하세요 */
+  font-weight: 700;                    /* Bold 수준으로 설정 */
+  color: var(--primary);
+  z-index: 2;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-btn {
+  color: var(--primary);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-btn:hover {
+  background: rgba(0,49,85,0.1);
+  transform: translateY(-1px);
+}
+
+/* ================= 본문 ================= */
+.page {
+  padding: 24px 0 48px;
+    /* 여기서 원하는 색으로 바꿔주세요 */
+  text-align: center;
+  background-color: #f0f4f8;
+}
+
+/* 제목(h2) 가운데 정렬 및 글씨 색 변경 */
+.page h2 {
+  text-align: center;
+  font-weight: 700; /*글씨 굵기*/
+  font-size: 40px;  /* 원하는 크기로 조정 */
+  color: #003155;    /* 원하는 색 코드로 바꿔주세요 */
+  margin-bottom: 0.5em;
+}
+
+/* 본문(p) 가운데 정렬 및 글씨 색 변경 */
+.page p {
+  text-align: center;
+  font-weight: 700; /*글씨 굵기*/
+  font-size: 24px;  /* 원하는 크기로 조정 */
+  color: #1552c4;    /* 원하는 색 코드로 바꿔주세요 */
+  margin-top: 0;
+}
+
+/* ================= 본문 제목 ================= */
+.page__title {
+  position: absolute;
+  top: 24px;
+  left: 50px;
+  background: rgba(255,255,255,0.9);
+  padding: 6px 10px;
+  border-radius: 6px;
+  z-index: 10;
+}
+
+/* ================= 지도 ================= */
+.svg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0 40px;
+}
+
+.map-object {
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.map-more-btn {
+  display: inline-block;
+  margin-top: 18px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+.map-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+.map-more-btn:active {
+  transform: translateY(0);
+}
+
+/* SVG 내부 영역 hover 스타일 (JS에서 클래스 추가) */
+.region {
+  transition: fill 160ms ease, stroke 160ms ease, opacity 160ms ease;
+  cursor: pointer;
+}
+.region.hovered {
+  fill: #d4e9ff !important;
+  stroke: #003155 !important;
+  opacity: 0.98 !important;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.12));
+}
+
+/* ================= 반응형 ================= */
+@media (max-width: 768px) {
+  .container {
+    width: 100vw;
+    height: 100vh;
+  }
+  .logo {
+    font-size: 48px;
+  }
+  .nav-btn {
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+  .page__title {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* page2.css 에 추가 */
+
+.header-bar .header-content {
+   display: flex;
+  align-items: center;
+  justify-content: space-between; /* 좌측 로고그룹 ↔ 우측 네비그룹 */
+}
+
+/* 좌측 로고 그룹 */
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* 로고 이미지 ↔ E-safe 텍스트 간격 */
+  margin-right: 0px;
+}
+
+
+.nav {
+  margin-left: auto;  /* nav 만 오른쪽 끝으로 밀기 */
+}
+
+/* 로고 이미지 크기 조정 */
+.logo-img {
+  width: 48px;  /* 필요에 따라 조절 */
+  height: auto;
+  display: block;
+  margin-right: 20px;
+}
+
+/* 파트너 로고 위치·크기 조정 */
+.partner-logo {
+  width: 450px;        /* 원하는 크기로 */
+  height: auto;
+  margin-top: 10px;    /* 아래로 내리고 싶으면 px 값을 키워서 조절 */
+  display: block;
+}
+
+/* page2.css 맨 아래에 추가 */
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 좌우 그룹을 양 끝으로 배치 */
+}
+

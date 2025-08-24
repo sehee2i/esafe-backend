@@ -1,0 +1,138 @@
+/* ================= 공통 ================= */
+:root {
+  --primary: #003155;
+  --ink: #000;
+  --muted: #F1F5FC;
+  --container: 1440px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: #fff;
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  transition: opacity 0.5s ease;
+}
+body.fade-out { opacity: 0; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ================= 헤더 ================= */
+.header-bar {
+  position: relative;
+  background: #fff;
+  padding: 24px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+.background-image {
+  display: none;
+}
+.logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+.nav {
+  display: flex;
+  gap: 20px;
+}
+.nav-btn {
+  background: #fff;
+  color: var(--primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.nav-btn:hover {
+  background: #f7faff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ================= 본문 ================= */
+.page {
+  margin-top: -16px;
+  padding: 0 0 48px;
+}
+.page__title {
+  margin: 24px 0;
+  font: 400 24px/1.33 'Roboto', sans-serif;
+}
+
+/* ================= AI 요약 카드 ================= */
+.summary-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+}
+
+/* ================= AI 요약 텍스트 ================= */
+.ai-summary h2 {
+  font-size: 22px;
+  margin-bottom: 16px;
+  color: var(--primary);
+}
+.ai-summary ol {
+  padding-left: 20px;
+}
+.ai-summary li {
+  margin-bottom: 16px;
+  line-height: 1.5;
+  font-size: 16px;
+}
+.ai-summary strong {
+  font-weight: 700;
+  color: #222;
+}
+.ai-summary blockquote {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: #f9f9f9;
+  border-left: 5px solid var(--primary);
+  font-style: italic;
+  border-radius: 8px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .logo { font-size: 36px; text-align: center; }
+  .nav { flex-wrap: wrap; justify-content: center; }
+}
+
+/* 페이지 상단 제목 (h2.page__title) 스타일 */
+.page__title {
+  font-weight: 700;      /* 글씨를 굵게 */
+  font-size: 32px;       /* 원하는 크기로 조절 */
+  color: #1552c4; /* 또는 #003155 같은 직접 색상 지정 */
+}
+
+/* AI 요약 카드 내부 제목 (ai-summary h2) 스타일 재정의 */
+.ai-summary h2 {
+  font-weight: 700;      /* 굵게 */
+  font-size: 26px;       /* 한 단계 키운 크기 */
+  color: var(--primary); /* 동일 색상으로 통일 */
+}
+

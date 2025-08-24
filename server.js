@@ -1,11 +1,14 @@
-// server.js
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
+const path = require("path");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// SQLite (메모리 DB: 껐다 켜면 초기화됨)
+// ✅ public/esafe 폴더 안의 HTML, CSS, JS 정적 파일 제공
+app.use(express.static(path.join(__dirname, "public/esafe")));
+
+// SQLite (메모리 DB)
 const db = new sqlite3.Database(':memory:');
 
 db.serialize(() => {
@@ -13,10 +16,7 @@ db.serialize(() => {
   db.run("INSERT INTO messages (text) VALUES ('Hello from SQLite + Render!')");
 });
 
-app.get("/", (req, res) => {
-  res.send("✅ Backend is running with SQLite");
-});
-
+// API
 app.get("/messages", (req, res) => {
   db.all("SELECT * FROM messages", [], (err, rows) => {
     if (err) {
@@ -27,6 +27,11 @@ app.get("/messages", (req, res) => {
   });
 });
 
+// ✅ SPA 대응 (없는 경로는 index.html 반환)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/esafe", "index.html"));
+});
+
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });

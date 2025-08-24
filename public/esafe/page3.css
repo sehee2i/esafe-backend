@@ -1,0 +1,231 @@
+/* ================= 공통 ================= */
+:root {
+  --primary: #003155;
+  --ink: #000;
+  --muted: #F1F5FC;
+  --chip: #000;
+  --chip-text: #fff;
+  --container: 1440px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: #fff;
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  transition: opacity 0.5s ease;
+}
+body.fade-out { opacity: 0; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ================= 헤더 ================= */
+.header-bar {
+  position: relative;
+  background: #fff;
+  padding: 24px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+/* 배경 이미지 제거 */
+.background-image {
+  display: none;
+}
+
+/* 로고 */
+.logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+
+/* 네비게이션 버튼 */
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-btn {
+  background: #fff;
+  color: var(--primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.nav-btn:hover {
+  background: #f7faff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ================= 본문 ================= */
+.page {
+  /* 헤더 바로 아래에 붙도록 살짝 위로 당김 */
+  margin-top: -16px;
+  padding: 0 0 48px;
+  font-family: 'Poppins', sans-serif; /* 원하시는 폰트로 */
+  font-size: 32px;       /* 크기를 더 크게 */
+  font-weight: 1200;      /* 볼드체 */
+  color: #003155;        /* 원하는 컬러(예: 다크블루) */
+}
+
+.page__title {
+  font-family: 'Poppins', sans-serif; /* 원하시는 폰트로 */
+  font-size: 32px;       /* 크기를 더 크게 */
+  font-weight:600;      /* 볼드체 */
+  color: #1552c4;        /* 원하는 컬러(예: 다크블루) */
+  margin: 50px 0;        /* 위아래 여백도 필요에 따라 조정 */
+}
+
+/* ================= 구 선택 칩 ================= */
+.districts {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0 28px;
+}
+.chip {
+  background: var(--chip);
+  color: var(--chip-text);
+  padding: 6px 16px;
+  border: 0;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.chip:hover { background: #444; }
+
+/* ================= 카드 영역 ================= */
+.cards {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.card {
+  flex: 1;
+  background: var(--muted);
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 342px;
+}
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card__title {
+  font: 400 24px/32px 'Roboto', sans-serif;
+  font-weight: 700;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  width: 18px; height: 18px;
+  font-size: 12px; font-weight: bold;
+  color: #fff; background: #4a90e2; border-radius: 50%;
+  cursor: pointer;
+}
+.tooltip {
+  font-size: 14px; line-height: 1.4;
+  visibility: hidden; opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute; top: 50%; left: 110%;
+  transform: translateY(-50%);
+  background: #fff; padding: 10px; border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 10;
+  white-space: nowrap;
+}
+.info-icon:hover + .tooltip {
+  visibility: visible; opacity: 1;
+}
+.rank {
+  list-style: none;
+  margin: 24px 0 0;
+  padding-left: 22px;
+  font: 400 20px/1.6 'Roboto', sans-serif;
+}
+
+/* ================= AI 요약 ================= */
+.ai-summary {
+  background: #cbd9f5;
+  border: 1px solid #cbd9f5;
+  border-radius: 8px;
+  padding: 24px;
+  font-size: 20px;
+  line-height: 1.4;
+  margin: 1.5em 0;
+  color: #003155;
+
+}
+.ai-summary h2 {
+  margin: 0 0 0.5em;
+  line-height: 1.2;
+}
+.ai-summary ol,
+.ai-summary ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+.ai-summary li { margin: 0.2em 0; }
+.ai-summary hr { margin: 0.8em 0; }
+.ai-summary h3 {
+  margin: 0.8em 0 0.4em;
+}
+.ai-summary blockquote {
+  margin: 0.5em 0;
+  padding-left: 1em;
+  border-left: 3px solid #ccc;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .logo { font-size: 36px; text-align: center; }
+  .nav { flex-wrap: wrap; justify-content: center; }
+}
+
+.bottom-btn-container {
+  text-align: center;
+  margin-bottom: 40px; /* 필요에 따라 여백 조정 */
+}
+
+.bottom-btn {
+  display: inline-block;
+  background: #000000;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.bottom-btn:hover {
+  background: #000000;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+

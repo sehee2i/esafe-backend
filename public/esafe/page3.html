@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>E-safe 폭우 취약 동네 TOP5</title>
+  <link rel="stylesheet" href="page3.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet" />
+</head>
+<body>
+  <!-- ===== 헤더 ===== -->
+  <header class="header-bar">
+    <div class="background-image"></div>
+    <h1 class="logo">E - safe</h1>
+    <nav class="nav">
+      <a href="index.html" class="nav-btn">HOME</a>
+      <a href="page3.html" class="nav-btn">폭우 취약 동네 TOP5</a>
+      <a href="page4.html" class="nav-btn">AI 요약 살펴보기</a>
+    </nav>
+  </header>
+
+  <!-- ===== 본문 ===== -->
+  <main class="page container">
+    <h2 class="page__title">폭우 취약 동네 TOP 5 대시보드</h2>
+
+    <!-- 구 선택 칩 -->
+    <div class="districts">
+      <button class="chip" data-region="동구">동구</button>
+      <button class="chip" data-region="서구">서구</button>
+      <button class="chip" data-region="남구">남구</button>
+      <button class="chip" data-region="북구">북구</button>
+      <button class="chip" data-region="광산구">광산구</button>
+    </div>
+
+    <!-- 카드 3개 -->
+    <section class="cards">
+      <!-- 뉴스 랭킹 -->
+      <article class="card">
+        <header class="card__header">
+          <h3 class="card__title">
+            뉴스 랭킹 TOP 5
+            <span class="info-icon">i</span>
+            <div class="tooltip">
+              <p>최근 4년 간 광주광역시에서 가장 사건·사고가 많이 일어난 지역 순위입니다.</p>
+            </div>
+          </h3>
+        </header>
+        <ol class="rank"></ol>
+      </article>
+
+      <!-- 강수량 랭킹 -->
+      <article class="card">
+        <header class="card__header">
+          <h3 class="card__title">
+            강수량 랭킹 TOP 5
+            <span class="info-icon">i</span>
+            <div class="tooltip">
+              <p>최근 24시간 실제 강수량이 많은 동 순위입니다.</p>
+            </div>
+          </h3>
+        </header>
+        <ol class="rank"></ol>
+      </article>
+
+      <!-- 지형 랭킹 -->
+      <article class="card">
+        <header class="card__header">
+          <h3 class="card__title">
+            지형 랭킹 TOP 5
+            <span class="info-icon">i</span>
+            <div class="tooltip">
+              <p>해발고도·저지대 취약도로 본 침수 취약 동 순위입니다.</p>
+            </div>
+          </h3>
+        </header>
+        <ol class="rank"></ol>
+      </article>
+    </section>
+
+    <!-- AI 요약 (빈 상태로 두기) -->
+    <section class="ai-summary" id="ai-summary">
+      <!-- JavaScript가 이곳에 각 구별 요약을 채워넣습니다. -->
+    </section>
+
+    <!-- ─── 페이지 하단 AI 요약 보기 버튼 ─── -->
+    <div class="bottom-btn-container">
+      <a href="page4.html" class="bottom-btn">AI 요약 살펴보기</a>
+    </div>
+
+  </main>
+
+  <script src="page3.js"></script>
+</body>
+</html>

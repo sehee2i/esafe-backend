@@ -3,7 +3,7 @@ const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 3000;  // ✅ Render가 지정한 PORT 사용
+const PORT = process.env.PORT || 3000;
 
 // Health Check
 app.get("/health", (req, res) => {
@@ -27,10 +27,14 @@ app.get("/messages", (req, res) => {
   });
 });
 
-// 정적 파일 (frontend)
+// 정적 파일 (public/esafe)
 app.use(express.static(path.join(__dirname, "public/esafe")));
 
-// ✅ Render에서 주는 포트로 실행
-app.listen(PORT, "0.0.0.0", () => {
+// ✅ 루트("/")로 들어오면 index.html 반환
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/esafe/index.html"));
+});
+
+app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });

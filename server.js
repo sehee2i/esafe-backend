@@ -12,7 +12,6 @@ app.get("/health", (req, res) => {
 
 // SQLite 연결
 const db = new sqlite3.Database(":memory:");
-
 db.serialize(() => {
   db.run("CREATE TABLE messages (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)");
   db.run("INSERT INTO messages (text) VALUES ('Hello from SQLite + Render!')");
@@ -28,10 +27,10 @@ app.get("/messages", (req, res) => {
   });
 });
 
-// 정적 파일 서빙
+// ✅ 정적 파일 제공 (public 폴더)
 app.use(express.static(path.join(__dirname, "public")));
 
-// 기본 라우트 → index.html 제공
+// ✅ 기본 라우트: index.html 반환
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });

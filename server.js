@@ -1,25 +1,22 @@
-// server.js
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
-const path = require("path");
-
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 
-// SQLite (메모리 DB: 서버 재시작하면 초기화됨)
-const db = new sqlite3.Database(':memory:');
+// Health Check
+app.get("/health", (req, res) => {
+  res.send("✅ Backend is running with SQLite");
+});
+
+// SQLite 연결
+const db = new sqlite3.Database(":memory:");
 
 db.serialize(() => {
   db.run("CREATE TABLE messages (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)");
   db.run("INSERT INTO messages (text) VALUES ('Hello from SQLite + Render!')");
 });
 
-// ✅ 헬스 체크
-app.get("/health", (req, res) => {
-  res.send("✅ Backend is running with SQLite");
-});
-
-// ✅ API 라우트
 app.get("/messages", (req, res) => {
   db.all("SELECT * FROM messages", [], (err, rows) => {
     if (err) {
@@ -30,19 +27,9 @@ app.get("/messages", (req, res) => {
   });
 });
 
-// ✅ 정적 파일 (프론트 제공)
-app.use(express.static(path.join(__dirname, "public", "esafe")));
-
-// ✅ 기본 라우트 (index.html 서빙)
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "esafe", "index.html"));
-});
-
-// ✅ SPA 대응 (React/Vue 같은 경우에만 필요, 지금은 옵션)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "esafe", "index.html"));
-});
+// 정적 파일
+app.use(express.static("public"));
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
